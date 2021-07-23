@@ -74,7 +74,7 @@ function DeleteAPolicy(props) {
                         'Content-type': 'application/json; charset=UTF-8'
                     }
                 }
-                await fetch('/auth?VAULT_TOKEN='+props.token+`&auth_method=approle&role=`+ roleToPolicyCheckList[i], requestOptions)
+                await fetch('/auth?VAULT_TOKEN='+props.token+`&auth_method=`+props.authRole+`&role=`+ roleToPolicyCheckList[i], requestOptions)
             }
         }
         await props.refreshData();

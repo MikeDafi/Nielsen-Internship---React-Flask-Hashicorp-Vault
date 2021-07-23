@@ -17,7 +17,7 @@ function UpdateAPolicy(props) {
   const [checkedCategories,setChecked] = React.useState([])
   const [policytoPolicyI,setPolicyToPolicyI] = React.useState({})
   const [conVisible,setConVisible] = React.useState(false)
-  useEffect(()=>{ setPolicyToPolicyI(props.policytoPolicyInfo);console.log(props.policytoPolicyInfo)},[props.policytoPolicyInfo])
+  useEffect(()=>{ setPolicyToPolicyI(props.policytoPolicyInfo);},[props.policytoPolicyInfo])
   const handleToggle = (value) => {
     const currentIndex = checkedCategories.indexOf(value);
     const newChecked = [...checkedCategories];
@@ -75,7 +75,6 @@ function confirmationAnswer(value){
             var x = temp[i];
             output[x] = (path.indexOf(x) !== -1)
         }
-        console.log(output)
         return output
       }
 
@@ -101,7 +100,6 @@ function confirmationAnswer(value){
                     setName("")
                 }}
                 onChange={(event, newValue) => {
-                    console.log(event)
                     setName(newValue);
                     if(policytoPolicyI[newValue] === undefined){
                         setChecked([])
@@ -163,7 +161,7 @@ function confirmationAnswer(value){
                 <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
                 {[0,1].map((value) => 
                     <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
-                        <div style={{width:50,textAlign:"center"}}>{value === 0 && "Create"}{value === 1 && "Read"}{value === 2 && "Update"}{value === 3 && "Delete"}</div>
+                        <div style={{width:50,textAlign:"center"}}>{value === 0 && "Create"}{value === 1 && "Update"}{value === 2 && "Delete"}{value === 3 && "Read"}</div>
                         <Checkbox
                             disabled={policytoPolicyI[nameOfPolicy] === undefined}
                             checked={checkedCategories.indexOf(value) !== -1}
@@ -173,7 +171,7 @@ function confirmationAnswer(value){
                     </div>)}
                 {[2,3].map((value) => 
                     <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
-                        <div style={{width:50,textAlign:"center"}}>{value === 0 && "Create"}{value === 1 && "Read"}{value === 2 && "Update"}{value === 3 && "Delete"}</div>
+                        <div style={{width:50,textAlign:"center"}}>{value === 0 && "Create"}{value === 1 && "Update"}{value === 2 && "Delete"}{value === 3 && "Read"}</div>
                         <Checkbox
                             disabled={policytoPolicyI[nameOfPolicy] === undefined}
                             checked={checkedCategories.indexOf(value) !== -1}

@@ -8,7 +8,7 @@ function ViewAPolicy(props) {
     const [policytoPolicyI,setPolicyToPolicyI] = React.useState({})
     const [policyToView,setPolicyToView] = React.useState(-1)
     const [viewRawPolicy,setViewRaw] = React.useState(false)
-    useEffect(()=> {setPolicyToPolicyI(props.policytoPolicyInfo);console.log(props.policytoPolicyInfo)},[props.policytoPolicyInfo])
+    useEffect(()=> {setPolicyToPolicyI(props.policytoPolicyInfo);},[props.policytoPolicyInfo])
     function parsePath(path){
       if(path === undefined) return ""
       var output = []

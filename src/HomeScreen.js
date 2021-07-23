@@ -66,7 +66,7 @@ function HomeScreen(props) {
   const fetchData = useCallback(async() => {
     var roleToPTemp = {}
     var policiesToPolicyInfo = {}
-    await fetch(`/auth?VAULT_TOKEN=` + props.token + `&auth_method=approle`, {
+    await fetch(`/auth?VAULT_TOKEN=` + props.token + `&auth_method=`+props.authRole, {
       method: "GET"
     }).then(response => response.json())
     .then(async data => {
@@ -74,7 +74,7 @@ function HomeScreen(props) {
       var i = 0;
       for(i = 0; i < roles.length;++i){
         const temp = i;
-        await fetch(`/auth?VAULT_TOKEN=` + props.token + `&auth_method=approle&role=`+roles[i], {
+        await fetch(`/auth?VAULT_TOKEN=` + props.token + `&auth_method=`+props.authRole+`e&role=`+roles[i], {
           method: "GET"
         }).then(response => response.json())
         .then(data => {roleToPTemp[roles[temp]] = data;})
@@ -87,7 +87,6 @@ function HomeScreen(props) {
     }).then(response => response.json())
     .then(async data => {
       var policies = data;
-      console.log(policies)
       for(var i = 0; i < policies.length;i++){
         const temp = i;
         await fetch(`/policies?VAULT_TOKEN=` + props.token + `&policyLabel=`+policies[i], {
@@ -138,7 +137,8 @@ function HomeScreen(props) {
       <DeleteAPolicy refreshData={fetchData} 
           token={props.token} 
           roleToPolicies={roleToPolicies} 
-          policytoPolicyInfo={policytoPolicyInfo}/>
+          policytoPolicyInfo={policytoPolicyInfo}
+          authRole={props.authRole}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <ViewAPolicy refreshData={fetchData} 
@@ -158,13 +158,15 @@ function HomeScreen(props) {
       <DisconnectPolicyFromRole refreshData={fetchData} 
           token={props.token} 
           roleToPolicies={roleToPolicies} 
-          policytoPolicyInfo={policytoPolicyInfo}/>
+          policytoPolicyInfo={policytoPolicyInfo}
+          authRole={props.authRole}/>
       </TabPanel>
       <TabPanel value={value} index={6}>
       <AssignPolicyToRole refreshData={fetchData} 
           token={props.token} 
           roleToPolicies={roleToPolicies} 
-          policytoPolicyInfo={policytoPolicyInfo}/>   
+          policytoPolicyInfo={policytoPolicyInfo}
+          authRole={props.authRole}/>   
       </TabPanel>
     </div>
         {/* <p style={{fontSize:50,color:"black",textAlign:"left",fontWeight:500}}>Policy Editor</p>
